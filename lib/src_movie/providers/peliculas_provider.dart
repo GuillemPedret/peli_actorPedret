@@ -3,11 +3,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 
-import 'package:scooby_app/src/models/actores_model.dart';
-import 'package:scooby_app/src/models/pelicula_model.dart';
+import 'package:scooby_app/src_movie/models_movies/actores_model.dart';
+import 'package:scooby_app/src_movie/models_movies/pelicula_model.dart';
 
 class PeliculasProvider {
-  String _apikey = 'ab85e2ec67c3e9d2e7970e8fd9c24fdd';
+  String _apikey = '57db077ea0d03d0610d00848933b8b9c';
   String _url = 'api.themoviedb.org';
   String _language = 'es-ES';
 

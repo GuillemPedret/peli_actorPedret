@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:scooby_app/src/models/actors_model.dart';
-
-import '../providers/actors_provider.dart';
+import 'package:scooby_app/src_movie/models_movies/pelicula_model.dart';
 
 class CardSwiper extends StatelessWidget {
-  final actorProvider = new PeliculasProvider_actor();
-
-  final List<Actor_ind> peliculas;
+  final List<Pelicula> peliculas;
 
   CardSwiper({@required this.peliculas});
 
@@ -30,7 +26,7 @@ class CardSwiper extends StatelessWidget {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
                 child: GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, 'detalle', arguments: peliculas[index] ),
+                  onTap: () => Navigator.pushNamed(context, 'detalle_movie', arguments: peliculas[index]),
                   child: FadeInImage(
                     image: NetworkImage(peliculas[index].getPosterImg()),
                     placeholder: AssetImage('assets/img/no-image.jpg'),

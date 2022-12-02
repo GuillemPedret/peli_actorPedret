@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:scooby_app/src/providers/actors_provider.dart';
-import 'package:scooby_app/src/search/search_delegate.dart';
+import 'package:scooby_app/src_movie/providers/peliculas_provider.dart';
+import 'package:scooby_app/src_movie/search/search_delegate.dart';
+
+import 'package:scooby_app/src_movie/widgets/card_swiper_widget.dart';
+import 'package:scooby_app/src_movie/widgets/movie_horizontal.dart';
 
 
-import 'package:scooby_app/src/widgets/card_swiper_widget.dart';
-import 'package:scooby_app/src/widgets/actor_horizontal.dart';
-
-import '../../src_movie/providers/peliculas_provider.dart';
-
-class HomePage extends StatelessWidget {
-  final actorProvider = new PeliculasProvider_actor();
+class HomePageMovie extends StatelessWidget {
   final peliculasProvider = new PeliculasProvider();
 
   @override
   Widget build(BuildContext context) {
-    actorProvider.getPopulares();
+    peliculasProvider.getPopulares();
 
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Actores populares'),
+          title: Text('Peliculas TMDB'),
           leading: IconButton(
-            icon: Icon(Icons.movie, color: Colors.white),
-            onPressed: () => Navigator.pushNamedAndRemoveUntil(context, 'movie',(Route<dynamic> route) => false)),
-
+              icon: Icon(Icons.people, color: Colors.white),
+              onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false)),
           backgroundColor: Colors.redAccent,
           actions: <Widget>[
             IconButton(
@@ -47,7 +43,7 @@ class HomePage extends StatelessWidget {
 
   Widget _swiperTarjetas() {
     return FutureBuilder(
-      future: actorProvider.getEnCines(),
+      future: peliculasProvider.getEnCines(),
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
         if (snapshot.hasData) {
           return CardSwiper(peliculas: snapshot.data);
@@ -57,8 +53,6 @@ class HomePage extends StatelessWidget {
       },
     );
   }
-
-
 
   Widget _footer(BuildContext context) {
     return Container(

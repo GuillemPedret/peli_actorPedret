@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:scooby_app/src/models/actores_model.dart';
-import 'package:scooby_app/src/models/pelicula_model.dart';
+import 'package:scooby_app/src_movie/models_movies/actores_model.dart';
+import 'package:scooby_app/src_movie/models_movies/pelicula_model.dart';
 
-import 'package:scooby_app/src/providers/peliculas_provider.dart';
+import 'package:scooby_app/src_movie/providers/peliculas_provider.dart';
 
 class PeliculaDetalle extends StatelessWidget {
   @override

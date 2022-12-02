@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scooby_app/src/models/pelicula_model.dart';
+import 'package:scooby_app/src_movie/models_movies/pelicula_model.dart';
 
 class MovieHorizontal extends StatelessWidget {
   final List<Pelicula> peliculas;

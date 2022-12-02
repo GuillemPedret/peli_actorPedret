@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:scooby_app/src/models/actors_model.dart';
-import 'package:scooby_app/src/providers/actors_provider.dart';
+import 'package:scooby_app/src_movie/models_movies/pelicula_model.dart';
+import 'package:scooby_app/src_movie/providers/peliculas_provider.dart';
 
 class DataSearch extends SearchDelegate {
   String seleccion = '';
-  final peliculasProvider = new PeliculasProvider_actor();
+  final peliculasProvider = new PeliculasProvider();
 
   final peliculas = [
     'Spiderman',
@@ -70,24 +70,22 @@ class DataSearch extends SearchDelegate {
     }
 
     return FutureBuilder(
-      future: peliculasProvider.buscarActor(query),
-      builder: (BuildContext context, AsyncSnapshot<List<Actor_ind>> snapshot) {
+      future: peliculasProvider.buscarPelicula(query),
+      builder: (BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot) {
         if (snapshot.hasData) {
           final peliculas = snapshot.data;
-          print('heeeeyyy');
-          print(peliculas);
 
           return ListView(
               children: peliculas.map((pelicula) {
             return ListTile(
               leading: FadeInImage(
-                image: NetworkImage(pelicula.getBackgroundImg()),
+                image: NetworkImage(pelicula.getPosterImg()),
                 placeholder: AssetImage('assets/img/no-image.jpg'),
                 width: 50.0,
                 fit: BoxFit.contain,
               ),
               title: Text(pelicula.title),
-              subtitle: Text(pelicula.name),
+              subtitle: Text(pelicula.originalTitle),
               onTap: () {
                 close(context, null);
                 pelicula.uniqueId = '';
@@ -102,29 +100,29 @@ class DataSearch extends SearchDelegate {
     );
   }
 
-/*   @override
-   Widget buildSuggestions(BuildContext context) {
-     // Son las sugerencias que aparecen cuando la persona escribe
+  // @override
+  // Widget buildSuggestions(BuildContext context) {
+  //   // Son las sugerencias que aparecen cuando la persona escribe
 
-     final listaSugerida = ( query.isEmpty )
-                             ? peliculasRecientes
-                             : peliculas.where(
-                               (p)=> p.toLowerCase().startsWith(query.toLowerCase())
-                             ).toList();
+  //   final listaSugerida = ( query.isEmpty )
+  //                           ? peliculasRecientes
+  //                           : peliculas.where(
+  //                             (p)=> p.toLowerCase().startsWith(query.toLowerCase())
+  //                           ).toList();
 
-     return ListView.builder(
-       itemCount: listaSugerida.length,
-       itemBuilder: (context, i) {
-         return ListTile(
-           leading: Icon(Icons.movie),
-           title: Text(listaSugerida[i]),
-           onTap: (){
-             seleccion = listaSugerida[i];
-           showResults( context );
-           },
-         );
-       },
-     );
-   }*/
+  //   return ListView.builder(
+  //     itemCount: listaSugerida.length,
+  //     itemBuilder: (context, i) {
+  //       return ListTile(
+  //         leading: Icon(Icons.movie),
+  //         title: Text(listaSugerida[i]),
+  //         onTap: (){
+  //           seleccion = listaSugerida[i];
+  //           showResults( context );
+  //         },
+  //       );
+  //     },
+  //   );
+  // }
 
 }
